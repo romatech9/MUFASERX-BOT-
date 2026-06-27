@@ -1,3 +1,5 @@
+0 stars = bottom
+5+ stars = top 
 ### 📊 My GitHub Stats
 
 <p align="center">
