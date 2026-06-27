@@ -60,23 +60,4 @@ audio courtesy of
 
 
 
-<audio width="400" controls>
-  <source src="https://files.catbox.moe/td8hd0.mp4" type="audio/mpeg">
-</audio>
-
-<p align="center">
-  
-  <a href="https://github.com/yourusername/MUFASER-X" target="_blank">MUFASER-X-BOT</a>.
-</p><p align="center">
-  <video width="400" controls>
-    <source src="https://files.catbox.moe/td8hd0.mp4" type="video/mp4">
-    Your browser does not support video.
-  </video>
-
-  <p>Audio courtesy of <a href="https://github.com/yourusername/MUFASER-X" target="_blank">MUFddfASER-X-BOT</a></p>
-</p>
-
-
-
-
 
