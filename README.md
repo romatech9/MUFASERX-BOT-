@@ -47,3 +47,13 @@
     <img src="https://github-readme-stats.vercel.app/api/pin/?username=romatech9&repo=MUFASERX-BOT&theme=radical&hide_border=true" />
   </a>
 </p>
+<audio width="400" controls>
+  <source src="audio.mp3" type="audio/mp3">
+  <source src="audio.ogg" type="audio/ogg">
+  Your browser does not support HTML audio.
+</audio>
+
+<p>
+audio courtesy of 
+<a href="https://res.cloudinary.com/dqxlb29uz/raw/upload/v1782585718/bwm_uploads/media-1782585718329.mp3" target="_blank">MUFASER-X-BOT</a>.
+</p>
