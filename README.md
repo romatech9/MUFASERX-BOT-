@@ -49,7 +49,7 @@
 
     
 </p>
-<h3 align="center">🔊 MUFASER-X-BOT</h3>
+<h3>🔊 MUFASER-X-BOT</h3>
 <audio width="400" controls>
   <source src="audio.mp3" type="audio/mp3">
   <source src="audio.ogg" type="audio/ogg">
