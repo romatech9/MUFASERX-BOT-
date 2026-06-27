@@ -48,14 +48,14 @@
   </a>
 </p>
 <audio width="400" controls>
-  <source src="audio.mp4" type="audio/mp4">
+  <source src="audio.mp3" type="audio/mp3">
   <source src="audio.ogg" type="audio/ogg">
   Your browser does not support HTML audio.
 </audio>
 
 <p>
 audio courtesy of 
-<a href="https://files.catbox.moe/td8hd0.mp4" target="_blank">MUFASER-X-BOT</a>.
+<a href="https://files.catbox.moe/td8hd0.mp3" target="_blank">MUFASER-X-BOT</a>.
 </p>
 
 
