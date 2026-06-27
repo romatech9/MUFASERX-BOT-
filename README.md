@@ -54,8 +54,9 @@
   <source src="audio.ogg" type="audio/ogg">
 </audio>
 <p>
-SOME AUDIO FOR YOU 
-<a href="https://res.cloudinary.com/dqxlb29uz/raw/upload/v1782595807/bwm_uploads/media-1782595807431.mp3" target="_blank">MUFASER-X-BOT</a>.
+☛
+☛
+<a href="https://res.cloudinary.com/dqxlb29uz/raw/upload/v1782595807/bwm_uploads/media-1782595807431.mp3" target="_blank">༼【🚀MUFASER-X-BOT🚀】༽</a>.
 </p>
 
 
