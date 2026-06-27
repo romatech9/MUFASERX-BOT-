@@ -1,5 +1,5 @@
 0 stars = bottom
-5+ stars = top 
+
 ### 📊 My GitHub Stats
 
 <p align="center">
@@ -19,3 +19,5 @@
 <p align="center">
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=YourUsername&theme=react-dark&hide_border=true" />
 </p> 
+
+5+ stars = top 
