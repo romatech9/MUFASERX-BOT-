@@ -18,18 +18,14 @@
 
 ---
 
-### 📊 GitHub Stats
+<h3 align="center">📊 ROMA-TECH GitHub Stats</h3>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=romatech9&show_icons=true&theme=radical&hide_border=true&count_private=true" alt="stats" />
+  <img src="https://github-readme-stats.vercel.app/api?username=romatech9&show_icons=true&theme=dark&border_radius=10" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=romatech9&layout=compact&theme=radical&hide_border=true&langs_count=8" alt="langs" />
-</p>
-
-<p align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=romatech9&theme=radical&hide_border=true" alt="streak" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=romatech9&layout=compact&theme=dark&border_radius=10" />
 </p>
 
 ---
