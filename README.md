@@ -1,4 +1,9 @@
 <img align="right" src="https://visitor-badge.laobi.icu/badge?page_id=romatech9.romatech9" />
+<h3 align="center">💻 Most Used Languages</h3>
+
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=romatech9&layout=compact&langs_count=8&theme=radical&bg_color=0D1117&title_color=FF1493&text_color=FFFFFF&border_color=FF1493&hide_border=true" alt="ROMA-TECH Languages" />
+</p>
 
 <h1 align="center">
     <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=1000&color=FF1493&center=true&vCenter=true&width=435&lines=Hi+there%2C+I'm+romatech9;ROMA-TECH+Dev;WhatsApp+Bot+Creator" alt="Typing SVG" />
