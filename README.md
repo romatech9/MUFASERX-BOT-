@@ -54,7 +54,19 @@
 ✅
 <a href="https://res.cloudinary.com/dqxlb29uz/raw/upload/v1782595807/bwm_uploads/media-1782595807431.mp3" target="_blank">【 🚀MUFASER-X-BOT🚀 】</a>.
 </p>
+<h3 align="center">⚡ ROMA-TECH EXTRAS</h3>
 
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=romatech9&label=ROMA-TECH+Views&color=FF1493&style=for-the-badge" />
+</p>
+
+<p align="center">
+  <img src="https://github-profile-trophy.vercel.app/?username=romatech9&theme=radical&no-frame=true&row=1&column=6" />
+</p>
+
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=romatech9&theme=react-dark&bg_color=0D1117&color=FF1493&line=FF1493&point=FFFFFF" />
+</p>
 
 
 
