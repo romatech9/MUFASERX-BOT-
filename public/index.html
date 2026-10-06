@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MUFASER-X — WhatsApp Multi-Device Bot</title>
+
+<title>MUFASER-X | WhatsApp Bot Pairing</title>
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -17,953 +18,717 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 
 body {
     min-height: 100vh;
-    font-family: Arial, sans-serif;
+    background: #000;
     color: #fff;
+    font-family: 'Segoe UI', sans-serif;
     overflow-x: hidden;
-    background:
-        radial-gradient(circle at 50% 10%, rgba(0,255,170,.18), transparent 30%),
-        radial-gradient(circle at 10% 80%, rgba(0,200,255,.12), transparent 30%),
-        #020708;
 }
 
-#particles {
+canvas {
     position: fixed;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -3;
+    z-index: -1;
+    opacity: .8;
 }
 
-.glow {
-    position: fixed;
-    width: 450px;
-    height: 450px;
-    border-radius: 50%;
-    background: rgba(0,255,170,.08);
-    filter: blur(100px);
-    z-index: -2;
-    pointer-events: none;
-}
-
-.glow.one {
-    top: -150px;
-    left: -150px;
-}
-
-.glow.two {
-    right: -180px;
-    bottom: -150px;
-}
+/* MUSIC */
 
 #musicBtn {
     position: fixed;
-    top: 18px;
-    right: 18px;
-    width: 46px;
-    height: 46px;
-    border: 1px solid rgba(0,255,180,.5);
+    top: 15px;
+    right: 15px;
+    z-index: 999;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    background: rgba(0,20,20,.75);
-    color: #00ffae;
+    background: rgba(10,10,10,.85);
+    border: 2px solid #00ff99;
+    color: #00ff99;
+    font-size: 20px;
     cursor: pointer;
-    font-size: 18px;
-    backdrop-filter: blur(15px);
-    z-index: 20;
+    box-shadow: 0 0 15px #00ff99;
 }
+
+/* MAIN */
 
 .container {
-    width: min(100%, 1000px);
-    margin: auto;
-    padding: 35px 18px 40px;
-}
-
-.brand {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.logo {
-    width: 120px;
-    height: 120px;
-    margin: auto;
-    padding: 5px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #00ffae, #00aaff);
-    box-shadow: 0 0 35px rgba(0,255,174,.5);
-}
-
-.logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.brand h1 {
-    margin-top: 18px;
-    font-size: clamp(36px, 7vw, 62px);
-    letter-spacing: 3px;
-    font-weight: 900;
-    background: linear-gradient(90deg,#fff,#00ffae,#00d9ff,#fff);
-    background-size: 300%;
-    -webkit-background-clip: text;
-    color: transparent;
-    animation: textFlow 6s linear infinite;
-}
-
-@keyframes textFlow {
-    from { background-position: 0; }
-    to { background-position: 300%; }
-}
-
-.brand p {
-    margin-top: 8px;
-    color: #a8dcd4;
-    font-size: 14px;
-    letter-spacing: 3px;
-}
-
-.tagline {
-    margin-top: 12px;
-    color: #7ffff0;
-    font-size: 12px;
-    letter-spacing: 4px;
-}
-
-.glass {
-    background: rgba(3,20,22,.72);
-    border: 1px solid rgba(0,255,190,.2);
+    width: 95%;
+    max-width: 460px;
+    margin: 50px auto;
+    padding: 35px 30px;
+    background: rgba(10,10,10,.88);
+    border: 2px solid #00ff99;
     border-radius: 25px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 20px 70px rgba(0,0,0,.45);
+    text-align: center;
+    box-shadow:
+        0 0 50px #00ff99,
+        inset 0 0 20px rgba(0,255,153,.3);
+    animation: show 1.2s ease;
 }
 
-.status-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 20px 24px;
-    margin-bottom: 22px;
-}
+@keyframes show {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
 
-.status-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.status-dot {
-    width: 17px;
-    height: 17px;
-    border-radius: 50%;
-    background: #00ff9d;
-    box-shadow: 0 0 20px #00ff9d;
-    animation: pulse 1.8s infinite;
-}
-
-@keyframes pulse {
-    50% {
-        transform: scale(1.3);
-        opacity: .55;
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }
 
-.status-title {
-    color: #86cfc5;
-    font-size: 12px;
+.logo-img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #33ccff;
+    box-shadow: 0 0 25px #33ccff;
+    margin-bottom: 15px;
 }
 
-#statusText {
-    margin-top: 4px;
-    font-weight: bold;
-}
-
-.uptime {
-    padding: 10px 17px;
-    border-radius: 15px;
-    background: rgba(0,255,180,.06);
-    border: 1px solid rgba(0,255,180,.16);
-    color: #9debe0;
-    font-size: 13px;
-}
-
-.uptime i {
-    color: #00ffae;
-    margin-right: 7px;
-}
-
-.pair-card {
-    padding: 28px;
-}
-
-.title {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 8px;
-}
-
-.title i {
-    color: #00ffae;
-    font-size: 27px;
-}
-
-.title h2 {
-    font-size: 24px;
+h1 {
+    font-size: 42px;
+    letter-spacing: 3px;
+    color: #33ccff;
+    text-shadow:
+        0 0 10px #33ccff,
+        0 0 30px #33ccff;
 }
 
 .subtitle {
-    color: #91bdb8;
-    font-size: 14px;
-    margin-bottom: 25px;
-}
-
-.methods {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-}
-
-.method {
-    padding: 24px;
-    border-radius: 20px;
-    border: 1px solid rgba(0,255,190,.18);
-    background: rgba(0,10,15,.55);
-    transition: .3s;
-}
-
-.method:hover {
-    transform: translateY(-4px);
-    border-color: rgba(0,255,190,.5);
-}
-
-.method-icon {
-    width: 55px;
-    height: 55px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 16px;
-    background: rgba(0,255,180,.08);
-    border: 1px solid rgba(0,255,180,.2);
-    color: #00ffae;
-    font-size: 24px;
-    margin-bottom: 17px;
-}
-
-.method h3 {
+    margin-top: 8px;
     font-size: 18px;
+    color: #00ff99;
+    text-transform: uppercase;
 }
 
-.method p {
-    margin-top: 7px;
-    color: #8db4b0;
-    font-size: 13px;
-    line-height: 1.6;
-}
+/* STATUS */
 
-.action-btn {
-    width: 100%;
-    margin-top: 20px;
+.status-card {
+    margin-top: 25px;
     padding: 15px;
-    border: none;
-    border-radius: 14px;
-    background: linear-gradient(90deg,#00f5a0,#00d9ff);
-    color: #00100d;
-    font-weight: 900;
-    cursor: pointer;
-    transition: .3s;
+    border-radius: 15px;
+    background: #111;
+    border: 1px solid #333;
+    font-size: 16px;
 }
 
-.action-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0,255,180,.25);
+.status-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #777;
+    margin-right: 8px;
 }
 
-.action-btn i {
-    margin-right: 7px;
+.status-dot.waiting {
+    background: #ffc857;
+    box-shadow: 0 0 10px #ffc857;
 }
 
-.phone-box input {
+.status-dot.pairing,
+.status-dot.generating_code,
+.status-dot.waiting_approval,
+.status-dot.qr_ready {
+    background: #33ccff;
+    box-shadow: 0 0 10px #33ccff;
+}
+
+.status-dot.connected {
+    background: #00ff99;
+    box-shadow: 0 0 15px #00ff99;
+}
+
+.status-dot.disconnected,
+.status-dot.failed {
+    background: #ff4444;
+    box-shadow: 0 0 10px #ff4444;
+}
+
+/* INPUT */
+
+input {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    background: #050505;
+    border: 2px solid #33ccff;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus {
+    box-shadow: 0 0 20px #33ccff;
+}
+
+/* BUTTON */
+
+.btn {
     width: 100%;
     margin-top: 15px;
     padding: 16px;
-    border-radius: 14px;
-    border: 1px solid rgba(0,255,190,.2);
-    background: rgba(0,0,0,.35);
-    color: white;
-    outline: none;
-    font-size: 15px;
-}
-
-.phone-box input:focus {
-    border-color: #00ffae;
-}
-
-.phone-box input::placeholder {
-    color: #5f817d;
-}
-
-.result {
-    display: none;
-    margin-top: 22px;
-}
-
-.result.show {
-    display: block;
-    animation: appear .4s ease;
-}
-
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.result-box {
-    padding: 25px;
-    border-radius: 20px;
-    background: rgba(0,10,12,.7);
-    border: 1px solid rgba(0,255,190,.25);
-    text-align: center;
-}
-
-.result-title {
-    color: #00ffae;
-    font-weight: bold;
-    margin-bottom: 17px;
-}
-
-#qrImage {
-    width: min(100%, 280px);
-    padding: 12px;
-    background: white;
-    border-radius: 18px;
-    box-shadow: 0 0 30px rgba(0,255,174,.3);
-}
-
-.instructions {
-    margin-top: 18px;
-    text-align: left;
-    color: #9fc4bf;
-    font-size: 13px;
-    line-height: 1.8;
-}
-
-.instructions span {
-    color: #00ffae;
-    font-weight: bold;
-}
-
-#codeValue {
-    display: inline-block;
-    margin: 15px 0;
-    padding: 18px 28px;
-    border-radius: 16px;
-    background: rgba(0,255,174,.06);
-    border: 1px solid rgba(0,255,174,.25);
-    color: #00ffae;
-    font-size: clamp(25px,7vw,40px);
-    font-weight: 900;
-    letter-spacing: 5px;
-    text-shadow: 0 0 20px rgba(0,255,174,.4);
-}
-
-.copy-btn,
-.back-btn {
-    padding: 12px 20px;
+    border: 2px solid #00ff99;
     border-radius: 12px;
-    border: 1px solid rgba(0,255,190,.25);
-    background: rgba(0,255,180,.06);
-    color: #00ffae;
-    cursor: pointer;
+    background: transparent;
+    color: #ffd700;
+    font-size: 17px;
     font-weight: bold;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.btn:hover {
+    background: #00ff99;
+    color: #000;
+    box-shadow: 0 0 30px #00ff99;
+    transform: scale(1.03);
+}
+
+.btn:disabled {
+    opacity: .6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* CODE + QR */
+
+.code-box,
+.qr-box {
+    display: none;
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 15px;
+    background: #050505;
+    border: 2px solid #33ccff;
+}
+
+.code-box.show,
+.qr-box.show {
+    display: block;
+}
+
+.code {
+    font-size: 22px;
+    letter-spacing: 4px;
+    color: #00ff99;
+    font-weight: bold;
+    text-shadow: 0 0 15px #00ff99;
+    margin-bottom: 10px;
+    word-break: break-word;
+}
+
+.copy-btn {
+    padding: 8px 16px;
+    margin-top: 8px;
+    border-radius: 8px;
+    border: 1px solid #00ff99;
+    background: transparent;
+    color: #00ff99;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.copy-btn:hover {
+    background: #00ff99;
+    color: #000;
+}
+
+.qr-box img {
+    width: 250px;
+    height: 250px;
+    border-radius: 15px;
+    border: 2px solid #00ff99;
+    background: #fff;
+    padding: 5px;
+}
+
+/* OTHER */
+
+.go-back {
+    display: block;
+    margin-top: 15px;
+    color: #33ccff;
+    font-size: 13px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.go-back:hover {
+    color: #00ff99;
 }
 
 .connected {
     display: none;
-    margin-top: 22px;
-    padding: 30px;
-    text-align: center;
-    border-radius: 22px;
-    background: linear-gradient(
-        135deg,
-        rgba(0,255,170,.13),
-        rgba(0,50,40,.45)
-    );
-    border: 1px solid rgba(0,255,170,.45);
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    background: #002b16;
+    border: 2px solid #00ff99;
 }
 
 .connected.show {
     display: block;
-    animation: appear .5s ease;
 }
 
-.success-icon {
-    width: 75px;
-    height: 75px;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: rgba(0,255,170,.12);
-    border: 2px solid #00ffae;
-    color: #00ffae;
-    font-size: 32px;
-    box-shadow: 0 0 30px rgba(0,255,170,.3);
+.footer {
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #333;
+    color: #aaa;
+    font-size: 14px;
 }
 
-.connected h2 {
-    margin-top: 18px;
+.footer span {
+    color: #00ff99;
+    font-weight: bold;
 }
 
-.connected p {
-    margin-top: 8px;
-    color: #8ecbc1;
+.divider {
+    margin: 20px 0;
+    color: #555;
+    font-size: 14px;
 }
 
-.features {
-    display: grid;
-    grid-template-columns: repeat(5,1fr);
-    gap: 10px;
-    margin-top: 20px;
-}
-
-.feature {
-    padding: 18px 8px;
-    text-align: center;
-    border-radius: 15px;
-    border: 1px solid rgba(0,255,190,.13);
-    background: rgba(0,10,15,.45);
-}
-
-.feature i {
-    display: block;
-    color: #00ffae;
-    font-size: 20px;
-    margin-bottom: 9px;
-}
-
-.feature span {
-    color: #91aaa7;
-    font-size: 11px;
-    line-height: 1.4;
-}
-
-#errorBox {
+#errorMsg {
     display: none;
-    margin-top: 15px;
-    padding: 13px;
-    border-radius: 12px;
-    color: #ff8c8c;
-    background: rgba(255,0,0,.07);
-    border: 1px solid rgba(255,0,0,.15);
-    font-size: 13px;
-    text-align: center;
-}
-
-#errorBox.show {
-    display: block;
-}
-
-footer {
-    text-align: center;
-    margin-top: 35px;
-    color: #52706c;
-    font-size: 12px;
-    line-height: 1.8;
-}
-
-footer strong {
-    color: #00ffae;
-}
-
-.footer-line {
-    width: 100px;
-    height: 1px;
-    margin: 0 auto 12px;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        #00ffae,
-        transparent
-    );
-}
-
-@media (max-width:700px) {
-
-    .container {
-        padding: 25px 12px 30px;
-    }
-
-    .logo {
-        width: 95px;
-        height: 95px;
-    }
-
-    .brand h1 {
-        font-size: 35px;
-    }
-
-    .brand p {
-        font-size: 11px;
-        letter-spacing: 2px;
-    }
-
-    .tagline {
-        font-size: 9px;
-        letter-spacing: 2px;
-    }
-
-    .status-card {
-        padding: 16px;
-    }
-
-    .uptime {
-        font-size: 11px;
-        padding: 8px;
-    }
-
-    .pair-card {
-        padding: 18px;
-    }
-
-    .methods {
-        grid-template-columns: 1fr;
-    }
-
-    .features {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .features .feature:last-child {
-        grid-column: span 2;
-    }
+    margin-top: 10px;
+    color: #ff4444;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="particles"></canvas>
-
-<div class="glow one"></div>
-<div class="glow two"></div>
+<canvas id="bg"></canvas>
 
 <audio
-id="bgMusic"
-src="https://files.catbox.moe/0v8587.mp3"
-loop
-preload="auto">
+    id="bgMusic"
+    src="https://files.catbox.moe/0v8587.mp3"
+    loop
+    preload="auto">
 </audio>
 
-<button id="musicBtn">🔊</button>
+<button id="musicBtn" title="Mute / Unmute">🔊</button>
 
-<main class="container">
+<div class="container">
 
-<section class="brand">
-
-    <div class="logo">
-        <img
+    <img
         src="https://res.cloudinary.com/dqxlb29uz/image/upload/v1791285903/bwm_uploads/media-1791285903776.jpg"
-        alt="MUFASER-X">
-    </div>
+        class="logo-img"
+        alt="MUFASER-X Logo">
 
     <h1>MUFASER-X</h1>
 
-    <p>WHATSAPP MULTI-DEVICE BOT</p>
-
-    <div class="tagline">
-        FAST • SECURE • STABLE • ALWAYS ONLINE
+    <div class="subtitle">
+        <i class="fa-brands fa-whatsapp"></i>
+        WhatsApp Multi-Device Bot
     </div>
 
-</section>
-
-<section class="glass status-card">
-
-    <div class="status-left">
-
-        <div class="status-dot"></div>
-
-        <div>
-            <div class="status-title">BOT STATUS</div>
-            <div id="statusText">Waiting for your action...</div>
-        </div>
-
+    <div class="status-card">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusText">Waiting to start...</span>
     </div>
 
-    <div class="uptime">
-        <i class="fa-regular fa-clock"></i>
-        <span id="uptime">00:00:00</span>
-    </div>
+    <div id="pairSection">
 
-</section>
+        <h3 style="margin-top:25px;">
+            <i class="fa-solid fa-link"></i>
+            Pair Your WhatsApp
+        </h3>
 
-<section class="glass pair-card" id="pairSection">
+        <p style="color:#aaa;margin-top:10px;font-size:14px;">
+            Choose pairing method below
+        </p>
 
-    <div class="title">
-        <i class="fa-solid fa-link"></i>
-        <h2>Pair Your WhatsApp</h2>
-    </div>
+        <button class="btn" id="qrBtn" onclick="startQR()">
+            <i class="fa-solid fa-qrcode"></i>
+            PAIR WITH QR CODE
+        </button>
 
-    <p class="subtitle">
-        Choose your preferred method to connect your WhatsApp account.
-    </p>
+        <div class="divider">--- OR ---</div>
 
-    <div class="methods">
+        <input
+            type="tel"
+            id="phoneInput"
+            placeholder="Enter phone number 2567XXXXXXXXX"
+            autocomplete="tel">
 
-        <div class="method">
+        <button class="btn" id="pairBtn" onclick="requestPairing()">
+            <i class="fa-solid fa-key"></i>
+            GET PAIRING CODE
+        </button>
 
-            <div class="method-icon">
-                <i class="fa-solid fa-qrcode"></i>
-            </div>
+        <p id="errorMsg"></p>
 
-            <h3>Pair with QR Code</h3>
+        <div class="qr-box" id="qrBox">
 
-            <p>
-                Scan the QR code using WhatsApp linked devices.
+            <h3>Scan QR Code</h3>
+
+            <img id="qrImage" src="" alt="QR Code">
+
+            <p style="color:#aaa;margin-top:15px;font-size:13px;">
+                WhatsApp → Settings → Linked Devices →
+                Link a device
             </p>
 
-            <button
-            class="action-btn"
-            onclick="startQR()">
-
-                <i class="fa-solid fa-qrcode"></i>
-                GENERATE QR CODE
-
-            </button>
-
-        </div>
-
-        <div class="method">
-
-            <div class="method-icon">
-                <i class="fa-solid fa-mobile-screen-button"></i>
-            </div>
-
-            <h3>Get Pairing Code</h3>
-
-            <p>
-                Enter your WhatsApp phone number to receive a pairing code.
-            </p>
-
-            <div class="phone-box">
-
-                <input
-                id="phoneInput"
-                type="tel"
-                placeholder="256XXXXXXXXX"
-                autocomplete="tel">
-
-            </div>
-
-            <button
-            class="action-btn"
-            onclick="requestPairing()">
-
-                <i class="fa-solid fa-key"></i>
-                GET PAIRING CODE
-
-            </button>
-
-        </div>
-
-    </div>
-
-    <div id="errorBox"></div>
-
-    <div id="qrBox" class="result">
-
-        <div class="result-box">
-
-            <div class="result-title">
-                <i class="fa-solid fa-qrcode"></i>
-                SCAN QR CODE
-            </div>
-
-            <img id="qrImage" src="" alt="WhatsApp QR Code">
-
-            <div class="instructions">
-                <span>1.</span> Open WhatsApp<br>
-                <span>2.</span> Go to Settings<br>
-                <span>3.</span> Select Linked Devices<br>
-                <span>4.</span> Select Link a Device<br>
-                <span>5.</span> Scan the QR code above
-            </div>
-
-            <br>
-
-            <button
-            class="back-btn"
-            onclick="goBackToPair()">
-
+            <a class="go-back" onclick="hideBoxes()">
                 <i class="fa-solid fa-arrow-left"></i>
                 GO BACK
-
-            </button>
+            </a>
 
         </div>
 
-    </div>
+        <div class="code-box" id="codeBox">
 
-    <div id="codeBox" class="result">
+            <h3>Your Pairing Code</h3>
 
-        <div class="result-box">
-
-            <div class="result-title">
-                <i class="fa-solid fa-key"></i>
-                YOUR PAIRING CODE
+            <div class="code" id="codeValue">
+                --------
             </div>
 
-            <div id="codeValue">----</div>
-
-            <br>
-
-            <button
-            class="copy-btn"
-            onclick="copyCode()">
-
-                <i class="fa-regular fa-copy"></i>
+            <button class="copy-btn" onclick="copyCode()">
+                <i class="fa-solid fa-copy"></i>
                 COPY CODE
-
             </button>
 
-            <div class="instructions">
-                Open WhatsApp → Settings → Linked Devices
-                → Link with phone number.
-            </div>
+            <p style="color:#aaa;margin-top:15px;font-size:13px;">
+                WhatsApp → Settings → Linked Devices →
+                Link with phone number
+            </p>
 
-            <br>
-
-            <button
-            class="back-btn"
-            onclick="goBackToPair()">
-
+            <a class="go-back" onclick="hideBoxes()">
                 <i class="fa-solid fa-arrow-left"></i>
                 GO BACK
-
-            </button>
+            </a>
 
         </div>
 
     </div>
 
-</section>
+    <div class="connected" id="connectedBox">
 
-<section id="connectedBox" class="connected">
+        <h2 style="color:#00ff99;">
+            ✅ BOT CONNECTED
+        </h2>
 
-    <div class="success-icon">
-        <i class="fa-solid fa-check"></i>
+        <p style="margin-top:10px;color:#aaa;">
+            MUFASER-X is online and ready.
+        </p>
+
+        <p style="margin-top:10px;">
+            Type <b style="color:#00ff99">.menu</b> on WhatsApp
+        </p>
+
+        <a class="go-back" onclick="goBackToPair()">
+            <i class="fa-solid fa-arrow-left"></i>
+            GO BACK
+        </a>
+
     </div>
 
-    <h2>BOT CONNECTED</h2>
-
-    <p>MUFASER-X is online and ready!</p>
-
-    <p>Type <strong>.menu</strong> on WhatsApp</p>
-
-</section>
-
-<section class="features">
-
-    <div class="feature">
-        <i class="fa-solid fa-bolt"></i>
-        <span>Fast<br>Response</span>
+    <div class="footer">
+        Powered by <span>MUFASER-X</span>
     </div>
 
-    <div class="feature">
-        <i class="fa-solid fa-shield-halved"></i>
-        <span>Secure<br>& Private</span>
-    </div>
-
-    <div class="feature">
-        <i class="fa-solid fa-mobile-screen"></i>
-        <span>Multi-Device<br>Support</span>
-    </div>
-
-    <div class="feature">
-        <i class="fa-solid fa-infinity"></i>
-        <span>Powerful<br>Features</span>
-    </div>
-
-    <div class="feature">
-        <i class="fa-solid fa-heart"></i>
-        <span>Built With<br>Love</span>
-    </div>
-
-</section>
-
-<footer>
-
-    <div class="footer-line"></div>
-
-    <strong>MUFASER-X</strong><br>
-
-    Powered by <strong>ROMA-TECH 🇺🇬</strong><br>
-
-    WhatsApp Multi-Device Bot
-
-</footer>
-
-</main>
+</div>
 
 <script>
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+
+let w = canvas.width = window.innerWidth;
+let h = canvas.height = window.innerHeight;
+
+const particles = [];
+
+for (let i = 0; i < 80; i++) {
+    particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 2 + 1,
+        dx: (Math.random() - .5),
+        dy: (Math.random() - .5)
+    });
+}
+
+function draw() {
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = "#00ff99";
+
+    particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > w) p.dx *= -1;
+        if (p.y < 0 || p.y > h) p.dy *= -1;
+    });
+
+    requestAnimationFrame(draw);
+}
+
+draw();
+
+window.addEventListener("resize", () => {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+});
+
+
+const statusDot = document.getElementById("statusDot");
+const statusText = document.getElementById("statusText");
+
 const phoneInput = document.getElementById("phoneInput");
-const qrBox = document.getElementById("qrBox");
+const pairBtn = document.getElementById("pairBtn");
+const qrBtn = document.getElementById("qrBtn");
+
 const codeBox = document.getElementById("codeBox");
+const qrBox = document.getElementById("qrBox");
+
+const codeValue = document.getElementById("codeValue");
+const qrImage = document.getElementById("qrImage");
+
+const errorMsg = document.getElementById("errorMsg");
 const connectedBox = document.getElementById("connectedBox");
 const pairSection = document.getElementById("pairSection");
-const qrImage = document.getElementById("qrImage");
-const codeValue = document.getElementById("codeValue");
-const statusText = document.getElementById("statusText");
-const errorBox = document.getElementById("errorBox");
+
 const bgMusic = document.getElementById("bgMusic");
 const musicBtn = document.getElementById("musicBtn");
 
-let polling = null;
-let currentPhone = "";
+let pollInterval = null;
 let isMuted = false;
 
-const startTime = Date.now();
 
-setInterval(() => {
+/* MUSIC */
 
-    const seconds =
-        Math.floor((Date.now() - startTime) / 1000);
+function playMusic() {
+    bgMusic.volume = .6;
+    bgMusic.play().catch(() => {});
+}
 
-    const hours =
-        String(Math.floor(seconds / 3600)).padStart(2, "0");
+musicBtn.onclick = () => {
+    isMuted = !isMuted;
+    bgMusic.muted = isMuted;
+    musicBtn.textContent = isMuted ? "🔇" : "🔊";
 
-    const minutes =
-        String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
+    if (!isMuted) {
+        playMusic();
+    }
+};
 
-    const secs =
-        String(seconds % 60).padStart(2, "0");
+window.addEventListener("load", playMusic);
 
-    document.getElementById("uptime").textContent =
-        `${hours}:${minutes}:${secs}`;
+document.addEventListener("click", () => {
+    if (bgMusic.paused && !isMuted) {
+        playMusic();
+    }
+}, { once: true });
 
-}, 1000);
+
+/* STATUS */
 
 function updateStatus(status) {
+    statusDot.className =
+        "status-dot " + (status || "waiting");
 
-    const statuses = {
-        connected: "Connected successfully!",
-        qr_ready: "QR code ready — scan it with WhatsApp.",
+    const statusNames = {
+        connected: "Connected Successfully ✅",
+        generating_code: "Generating pairing code...",
         waiting_approval: "Waiting for WhatsApp approval...",
+        pairing_code_ready: "Pairing code generated",
+        pairing: "Pairing code generated",
+        qr_ready: "QR Code ready — scan it",
         connecting: "Connecting to WhatsApp...",
-        waiting: "Waiting for your action...",
-        idle: "Ready to connect.",
-        session_not_found: "No active session found."
+        disconnected: "Disconnected — reconnecting...",
+        failed: "Connection failed",
+        session_not_found: "Waiting to start...",
+        idle: "Waiting to start...",
+        waiting: "Waiting to start..."
     };
 
     statusText.textContent =
-        statuses[status] || status;
+        statusNames[status] || status || "Waiting to start...";
 }
 
+
+/* ERROR */
+
 function showError(message) {
-    errorBox.textContent = message;
-    errorBox.classList.add("show");
+    errorMsg.textContent = message;
+    errorMsg.style.display = "block";
 }
 
 function hideError() {
-    errorBox.textContent = "";
-    errorBox.classList.remove("show");
+    errorMsg.textContent = "";
+    errorMsg.style.display = "none";
 }
 
-function hideResults() {
 
-    qrBox.classList.remove("show");
+/* RESET */
+
+function hideBoxes() {
     codeBox.classList.remove("show");
-
-    qrImage.src = "";
-    codeValue.textContent = "----";
+    qrBox.classList.remove("show");
+    hideError();
 }
+
+function resetQRButton() {
+    qrBtn.disabled = false;
+    qrBtn.innerHTML =
+        '<i class="fa-solid fa-qrcode"></i> PAIR WITH QR CODE';
+}
+
+function resetPairButton() {
+    pairBtn.disabled = false;
+    pairBtn.innerHTML =
+        '<i class="fa-solid fa-key"></i> GET PAIRING CODE';
+}
+
+
+/* FORMAT CODE */
 
 function formatPairingCode(code) {
+    if (!code) {
+        return "--------";
+    }
 
-    if (!code) return "";
+    const clean =
+        String(code).replace(/[^A-Za-z0-9]/g, "");
 
-    code = String(code)
-        .replace(/[^A-Za-z0-9]/g, "")
-        .toUpperCase();
-
-    return code.length > 4
-        ? code.slice(0,4) + "-" + code.slice(4,8)
+    return clean.length === 8
+        ? clean.match(/.{1,4}/g).join("-")
         : code;
 }
 
-async function startQR() {
 
-    hideError();
-    hideResults();
-    clearInterval(polling);
+/* COPY */
 
-    currentPhone = phoneInput.value.trim();
+async function copyCode() {
+    const code = codeValue.textContent.trim();
 
-    updateStatus("connecting");
+    if (!code || code === "--------") {
+        return;
+    }
 
     try {
+        await navigator.clipboard.writeText(code);
 
+        const button =
+            document.querySelector(".copy-btn");
+
+        const old = button.innerHTML;
+
+        button.innerHTML =
+            '<i class="fa-solid fa-check"></i> COPIED';
+
+        setTimeout(() => {
+            button.innerHTML = old;
+        }, 1500);
+
+    } catch {
+        alert("Copy failed. Please copy the code manually.");
+    }
+}
+
+
+/* QR PAIRING */
+
+async function startQR() {
+    hideError();
+
+    const phone =
+        phoneInput.value.trim().replace(/\D/g, "");
+
+    if (phone.length < 7) {
+        showError(
+            "Please enter a valid international phone number first."
+        );
+        return;
+    }
+
+    qrBtn.disabled = true;
+    qrBtn.innerHTML =
+        '<i class="fa-solid fa-spinner fa-spin"></i> GENERATING QR...';
+
+    clearInterval(pollInterval);
+
+    /* Only QR can be visible */
+    codeBox.classList.remove("show");
+    qrBox.classList.remove("show");
+
+    try {
         const response = await fetch("/api/start-qr", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                phone: currentPhone
-            })
+            body: JSON.stringify({ phone })
         });
 
         const data = await response.json();
 
-        if (!response.ok || data.error) {
-            throw new Error(
-                data.error || "Unable to generate QR code."
+        if (!response.ok) {
+            showError(
+                data.error || "Failed to generate QR code."
             );
+
+            resetQRButton();
+            return;
         }
 
         if (data.qrDataUrl) {
-
-            codeBox.classList.remove("show");
-
             qrImage.src = data.qrDataUrl;
             qrBox.classList.add("show");
-
-            updateStatus("qr_ready");
         }
 
+        updateStatus("qr_ready");
         startPolling();
 
+        qrBtn.disabled = false;
+        qrBtn.innerHTML =
+            '<i class="fa-solid fa-rotate"></i> REFRESH QR';
+
     } catch (error) {
-
-        updateStatus("waiting");
-        showError(error.message);
-
+        console.error("[Panel] QR error:", error);
+        showError("Unable to connect to the bot server.");
+        resetQRButton();
     }
 }
 
+
+/* PHONE PAIRING */
+
 async function requestPairing() {
     hideError();
-    hideResults();
-    clearInterval(polling);
 
-    const phone = phoneInput.value.trim();
+    const phone =
+        phoneInput.value.trim().replace(/\D/g, "");
 
-    if (!phone || phone.length < 7) {
-        showError("Please enter a valid WhatsApp phone number.");
+    if (phone.length < 7) {
+        showError(
+            "Please enter a valid international phone number."
+        );
         return;
     }
 
-    currentPhone = phone;
-    updateStatus("connecting");
+    pairBtn.disabled = true;
+    pairBtn.innerHTML =
+        '<i class="fa-solid fa-spinner fa-spin"></i> GENERATING...';
+
+    clearInterval(pollInterval);
+
+    /* Only pairing code can be visible */
+    codeBox.classList.remove("show");
+    qrBox.classList.remove("show");
 
     try {
         const response = await fetch("/api/pair", {
@@ -976,10 +741,79 @@ async function requestPairing() {
 
         const data = await response.json();
 
-        if (!response.ok || data.error) {
-            throw new Error(
-                data.error || "Unable to generate pairing code."
+        if (!response.ok) {
+            showError(
+                data.error ||
+                "Failed to generate pairing code."
             );
+
+            resetPairButton();
+            return;
+        }
+
+        if (data.pairingCode) {
+            codeValue.textContent =
+                formatPairingCode(data.pairingCode);
+
+            codeBox.classList.add("show");
+        }
+
+        updateStatus("waiting_approval");
+        startPolling();
+
+        pairBtn.disabled = false;
+        pairBtn.innerHTML =
+            '<i class="fa-solid fa-rotate"></i> GENERATE NEW CODE';
+
+    } catch (error) {
+        console.error("[Panel] Pairing error:", error);
+        showError("Unable to connect to the bot server.");
+        resetPairButton();
+    }
+}
+
+
+/* POLLING */
+
+function startPolling() {
+    clearInterval(pollInterval);
+
+    checkStatus();
+
+    pollInterval =
+        setInterval(checkStatus, 2000);
+}
+
+
+async function checkStatus() {
+    const phone =
+        phoneInput.value.trim().replace(/\D/g, "");
+
+    if (phone.length < 7) {
+        return;
+    }
+
+    try {
+        const response = await fetch(
+            `/api/status?phone=${encodeURIComponent(phone)}`,
+            { cache: "no-store" }
+        );
+
+        if (!response.ok) {
+            return;
+        }
+
+        const data = await response.json();
+
+        updateStatus(data.status);
+
+        if (data.connected === true) {
+            pairSection.style.display = "none";
+            connectedBox.classList.add("show");
+
+            updateStatus("connected");
+            clearInterval(pollInterval);
+            return;
         }
 
         if (data.pairingCode) {
@@ -989,32 +823,103 @@ async function requestPairing() {
                 formatPairingCode(data.pairingCode);
 
             codeBox.classList.add("show");
-
-            updateStatus("waiting_approval");
         }
 
-        startPolling();
+        if (data.qrDataUrl && !data.pairingCode) {
+            codeBox.classList.remove("show");
 
-    } catch (error) {
-        updateStatus("waiting");
-        showError(error.message);
-    }
+            qrImage.src = data.qrDataUrl;
+            qrBox.classList.add("show");
+        }
+
+    } catch {}
 }
 
-async function checkStatus() {
-    if (!currentPhone) return;
+
+/* GO BACK */
+
+function goBackToPair() {
+    connectedBox.classList.remove("show");
+    pairSection.style.display = "block";
+
+    updateStatus("waiting");
+    hideBoxes();
+
+    resetQRButton();
+    resetPairButton();
+
+    clearInterval(pollInterval);
+
+    phoneInput.value = "";
+    codeValue.textContent = "--------";
+    qrImage.src = "";
+}
+
+
+/* PHONE INPUT */
+
+phoneInput.addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        requestPairing();
+    }
+});
+
+
+phoneInput.addEventListener("input", () => {
+    clearInterval(pollInterval);
+
+    hideError();
+
+    codeBox.classList.remove("show");
+    qrBox.classList.remove("show");
+    connectedBox.classList.remove("show");
+
+    pairSection.style.display = "block";
+
+    resetPairButton();
+    resetQRButton();
+
+    const phone =
+        phoneInput.value.trim().replace(/\D/g, "");
+
+    if (phone.length < 7) {
+        updateStatus("waiting");
+        return;
+    }
+
+    checkStatus();
+});
+
+
+/* INITIAL STATUS */
+
+async function initialize() {
+    updateStatus("waiting");
+
+    const phone =
+        phoneInput.value.trim().replace(/\D/g, "");
+
+    if (phone.length < 7) {
+        return;
+    }
 
     try {
         const response = await fetch(
-            `/api/status?phone=${encodeURIComponent(currentPhone)}`
+            `/api/status?phone=${encodeURIComponent(phone)}`,
+            { cache: "no-store" }
         );
+
+        if (!response.ok) {
+            return;
+        }
 
         const data = await response.json();
 
-        if (data.connected || data.status === "connected") {
-            clearInterval(polling);
+        updateStatus(data.status);
 
-            hideResults();
+        if (data.connected === true) {
+            pairSection.style.display = "none";
             connectedBox.classList.add("show");
 
             updateStatus("connected");
@@ -1028,238 +933,31 @@ async function checkStatus() {
                 formatPairingCode(data.pairingCode);
 
             codeBox.classList.add("show");
-
-            updateStatus("waiting_approval");
-            return;
         }
 
-        if (data.qrDataUrl) {
+        if (data.qrDataUrl && !data.pairingCode) {
             codeBox.classList.remove("show");
 
             qrImage.src = data.qrDataUrl;
             qrBox.classList.add("show");
-
-            updateStatus("qr_ready");
-            return;
         }
 
-        updateStatus(data.status || "connecting");
-
-    } catch (error) {
-        console.error("Status error:", error);
-    }
-}
-
-function startPolling() {
-    clearInterval(polling);
-
-    polling = setInterval(() => {
-        checkStatus();
-    }, 3000);
-
-    checkStatus();
-}
-
-function goBackToPair() {
-    clearInterval(polling);
-
-    currentPhone = "";
-
-    phoneInput.value = "";
-
-    qrBox.classList.remove("show");
-    codeBox.classList.remove("show");
-    connectedBox.classList.remove("show");
-
-    qrImage.src = "";
-    codeValue.textContent = "";
-
-    hideError();
-    updateStatus("waiting");
-}
-
-function formatPairingCode(code) {
-    if (!code) return "";
-
-    code = String(code)
-        .replace(/[^a-zA-Z0-9]/g, "")
-        .toUpperCase();
-
-    return code.length > 4
-        ? `${code.slice(0, 4)}-${code.slice(4, 8)}`
-        : code;
-}
-
-async function copyCode() {
-    const code = codeValue.textContent.trim();
-
-    if (!code) return;
-
-    try {
-        await navigator.clipboard.writeText(code);
-
-        copyButton.textContent = "✓ COPIED";
-
-        setTimeout(() => {
-            copyButton.textContent = "COPY CODE";
-        }, 2000);
-
-    } catch (error) {
-        console.error("Copy error:", error);
-    }
-}
-
-phoneInput.addEventListener("input", () => {
-    qrBox.classList.remove("show");
-    codeBox.classList.remove("show");
-    connectedBox.classList.remove("show");
-
-    hideError();
-
-    const phone = phoneInput.value.trim();
-
-    if (phone.length >= 7) {
-        currentPhone = phone;
-        checkStatus();
-    }
-});
-
-function hideResults() {
-    qrBox.classList.remove("show");
-    codeBox.classList.remove("show");
-    connectedBox.classList.remove("show");
-}
-
-function hideError() {
-    errorBox.classList.remove("show");
-    errorBox.textContent = "";
-}
-
-function showError(message) {
-    errorBox.textContent = message;
-    errorBox.classList.add("show");
-}
-
-function updateStatus(status) {
-    const statusMap = {
-        waiting: ["Waiting", "waiting"],
-        connecting: ["Connecting...", "connecting"],
-        qr_ready: ["Scan QR Code", "waiting"],
-        waiting_approval: ["Waiting for approval...", "waiting"],
-        connected: ["Connected", "connected"]
-    };
-
-    const result =
-        statusMap[status] || ["Connecting...", "connecting"];
-
-    statusText.textContent = result[0];
-    statusDot.className = `status-dot ${result[1]}`;
-}
-
-function toggleMusic() {
-    if (music.paused) {
-        music.play().catch(() => {});
-        musicButton.textContent = "🔊";
-    } else {
-        music.pause();
-        musicButton.textContent = "🔇";
-    }
-}
-
-musicButton.addEventListener("click", toggleMusic);
-
-document.addEventListener("click", () => {
-    if (music.paused) {
-        music.play().catch(() => {});
-    }
-}, { once: true });
-
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-
-let particles = [];
-
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-
-function createParticles() {
-    particles = [];
-
-    const count = Math.min(
-        80,
-        Math.floor(window.innerWidth / 15)
-    );
-
-    for (let i = 0; i < count; i++) {
-        particles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            size: Math.random() * 2 + 0.5,
-            speed: Math.random() * 0.5 + 0.1,
-            opacity: Math.random() * 0.5 + 0.1
-        });
-    }
-}
-
-function animateParticles() {
-    ctx.clearRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-    particles.forEach(particle => {
-        particle.y -= particle.speed;
-
-        if (particle.y < 0) {
-            particle.y = canvas.height;
-            particle.x = Math.random() * canvas.width;
+        if (
+            data.status !== "idle" &&
+            data.status !== "session_not_found"
+        ) {
+            startPolling();
         }
 
-        ctx.beginPath();
-
-        ctx.arc(
-            particle.x,
-            particle.y,
-            particle.size,
-            0,
-            Math.PI * 2
+    } catch (error) {
+        console.log(
+            "[Panel] Initial status check failed:",
+            error.message
         );
-
-        ctx.fillStyle =
-            `rgba(0, 255, 180, ${particle.opacity})`;
-
-        ctx.fill();
-    });
-
-    requestAnimationFrame(animateParticles);
-}
-
-window.addEventListener("resize", () => {
-    resizeCanvas();
-    createParticles();
-});
-
-resizeCanvas();
-createParticles();
-animateParticles();
-
-function initialize() {
-    hideResults();
-    hideError();
-    updateStatus("waiting");
-
-    if (phoneInput.value.trim().length >= 7) {
-        currentPhone = phoneInput.value.trim();
-        checkStatus();
     }
 }
 
 initialize();
-
 </script>
 
 </body>
